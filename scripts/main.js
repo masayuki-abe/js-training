@@ -1,21 +1,34 @@
-const myHeading = document.querySelector('h1');
-myHeading.textContent = 'Hello world!';
+const myImage = document.querySelector('img');
 
-let myVariable;
-myVariable = 'Bob';
+myImage.onclick = () => {
+  const mySrc = myImage.getAttribute('src');
+  if(mySrc === 'images/firefox-icon.png'){
+    myImage.setAttribute('src', 'images/firefox2.png');
+  }else{
+    myImage.setAttribute('src', 'images/firefox-icon.png');
+  }
+};
 
-// 関数
-// https://developer.mozilla.org/ja/docs/Learn/Getting_started_with_the_web/JavaScript_basics#%E9%96%A2%E6%95%B0
-function multiply(num1, num2) {
-  let result = num1 * num2;
-  return result;
+let myButton = document.querySelector('button');
+let myHeading = document.querySelector('h1');
+
+function setUserName() {
+  const myName = prompt('あなたの名前を入力してください。');
+  if(!myName){
+    setUserName();
+  }else{
+    localStorage.setItem('name', myName);
+    myHeading.textContent = `Hey, ${myName}! Mozilla is cool!`;
+  }
 }
-console.log(multiply(4, 7));
-console.log(multiply(20, 20));
-console.log(multiply(0.5, 3));
 
-// イベント
-// https://developer.mozilla.org/ja/docs/Learn/Getting_started_with_the_web/JavaScript_basics#%E3%82%A4%E3%83%99%E3%83%B3%E3%83%88
-document.querySelector('html').addEventListener('click', () => {
-  alert('click!');
-});
+if(!localStorage.getItem('name')){
+  setUserName();
+}else{
+  const storeName = localStorage.getItem('name');
+  myHeading.textContent = `Hey, ${storeName}! Mozilla is cool!`;
+}
+
+myButton.onclick = () => {
+  setUserName();
+};
