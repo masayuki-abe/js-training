@@ -2,7 +2,7 @@
 <html lang="ja">
   <head>
     <meta charset="utf-8"/>
-    <title>Strings: Task 2</title>
+    <title>Strings: Task 3</title>
     <style>
       p {
         color: purple;
@@ -26,28 +26,28 @@
 
   </body>
   <script>
-    const quote = 'I do not like green eggs and ham. I do not like them, Sam-I-Am.';
-    const substring = 'green eggs and ham';
+    const quote = 'I dO nOT lIke gREen eGgS anD HAM';
 
     // Add your code here
-    const quoteLength = quote.length;
+    let fixedQuote = quote.toLowerCase();
 
-    const index = quote.indexOf(substring);
+    const firstLetter = fixedQuote.slice(0, 1);
+    fixedQuote = fixedQuote.replace(firstLetter, firstLetter.toUpperCase());
+    fixedQuote = fixedQuote.replace('green eggs and ham', 'tomato and onion');
 
-    // const substringLength = substring.length;
+    finalQuote = `${fixedQuote}.`;
 
-    // const revisedQuote = `${quote.slice(0, index + substringLength)}.`;
-    const revisedQuote = quote.slice(0, index + substring.length + 1);
+
+
 
     // Don't edit the code below here!
 
     const section = document.querySelector('section');
 
-    section.innerHTML = ' ';
     const para1 = document.createElement('p');
-    para1.textContent = `The quote is ${ quoteLength } characters long.`;
+    para1.textContent = fixedQuote;
     const para2 = document.createElement('p');
-    para2.textContent = revisedQuote;
+    para2.textContent = finalQuote;
 
     section.appendChild(para1);
     section.appendChild(para2);
