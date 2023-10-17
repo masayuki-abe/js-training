@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Strings: Task 1</title>
+    <style>
+      p {
+        color: purple;
+        margin: 0.5em 0;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+    </style>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+
+  <body>
+
+    <div class="output" style="min-height: 125px;">
+      <ul></ul>
+      <p></p>
+    </div>
+
+    <script>
+      const list = document.querySelector('.output ul');
+      const totalBox = document.querySelector('.output p');
+      let total = 0;
+      list.innerHTML = '';
+      totalBox.textContent = '';
+      // No.1
+      let products = ['パンツ:6.99', '靴下:5.99', 'T シャツ:14.99', 'ズボン:31.99', '靴:23.99'];
+
+      for (let i = 0; i < products.length; i++) { // No.2
+        // No.3
+        let subArray = products[i].split(':');
+        let name = subArray[0];
+        console.log(name);
+
+        // No.4
+        let price = Number(subArray[1]);
+        console.log(price);
+
+        // No.5
+        total += price;
+        console.log(total);
+        let itemText = `${name} - \$${price}`;
+
+
+        const listItem = document.createElement('li');
+        listItem.textContent = itemText;
+        list.appendChild(listItem);
+      }
+
+      totalBox.textContent = '合計: $' + total.toFixed(2);
+    </script>
+  </body>
+</html>
