@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style type="text/css">
+    .output * {
+      box-sizing: border-box;
+    }
+
+    .output ul {
+      padding-left: 0;
+    }
+
+    .output li {
+      display: block;
+      float: left;
+      width: 25%;
+      border: 2px solid white;
+      padding: 5px;
+      height: 40px;
+      background-color: #4a2db6;
+      color: white;
+    }
+
+    html {
+      font-family: sans-serif;
+    }
+
+    h2 {
+      font-size: 16px;
+    }
+
+    .a11y-label {
+      margin: 0;
+      text-align: right;
+      font-size: 0.7rem;
+      width: 98%;
+    }
+
+    body {
+      margin: 10px;
+      background: #f5f9fa;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="output" style="height: 500px;overflow: auto;">
+    <label for="month">月を選択してください: </label>
+    <select id="month">
+      <option value="1">1 月</option>
+      <option value="2">2 月</option>
+      <option value="3">3 月</option>
+      <option value="4">4 月</option>
+      <option value="5">5 月</option>
+      <option value="6">6 月</option>
+      <option value="7">7 月</option>
+      <option value="8">8 月</option>
+      <option value="9">9 月</option>
+      <option value="10">10 月</option>
+      <option value="11">11 月</option>
+      <option value="12">12 月</option>
+    </select>
+  
+    <h1></h1>
+  
+    <ul></ul>
+  </div>
+
+  <script>
+    const select = document.querySelector('select');
+    const list = document.querySelector('ul');
+    const h1 = document.querySelector('h1');
+
+    select.onchange = function() {
+      const choice = select.value;
+      let days = 31;
+
+      // 条件式をここに書く
+      if(choice === '4' || choice === '6' || choice === '9' || choice === '11'){
+        days -= 1;
+      }else if(choice === '2'){
+        days = 28;
+      }
+
+      createCalendar(days, choice + ' 月');
+    }
+
+    function createCalendar(days, choice) {
+      list.innerHTML = '';
+      h1.textContent = choice;
+      for (let i = 1; i <= days; i++) {
+        const listItem = document.createElement('li');
+        listItem.textContent = i;
+        list.appendChild(listItem);
+      }
+    }
+
+    createCalendar(31,'1 月');
+  </script>
+</body>
+</html>
